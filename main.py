@@ -43,6 +43,8 @@ def download_from_url(url: str, download_path="Downloads"):
 
 def download_from_name(name, suffix="audio", download_path="Downloads"):
     """
+    :param download_path: path to where the file will be downloaded
+    :param suffix: suffix for the search on youtube ("audio" by default)
     :param name: Name of the music to download
     :return: Downloads the music, and returns absolute path of the downloaded music
     """

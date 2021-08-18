@@ -6,6 +6,7 @@ from pytube import YouTube
 from youtube_search import YoutubeSearch as yts
 
 SUFFIX = "audio"
+Download_loc = sys.argv[0].strip("main.py")
 
 
 def get_urls(titles: list, suffix="audio"):
@@ -40,14 +41,16 @@ def download_from_url(url: str, download_path="Downloads", quick: bool = False):
     return outputPath
 
 
-def download_from_name(name):
+def download_from_name(name, suffix="audio", download_path="Downloads"):
     """
+    :param download_path: path to where the file will be downloaded
+    :param suffix: suffix for the search on youtube ("audio" by default)
     :param name: Name of the music to download
     :return: Downloads the music, and returns absolute path of the downloaded music
     """
-    search = yts(name + SUFFIX, max_results=1).to_dict()
+    search = yts(name + suffix, max_results=1).to_dict()
     link = "https://www.youtube.com" + search[0]['url_suffix']
-    return download_from_url(link)
+    return download_from_url(link, download_path)
 
 
 def quick_convert(file):
@@ -73,5 +76,20 @@ def long_convert(file):
     os.remove(file)
 
 
-def download(name):
-    long_convert(download_from_name(name))
+def download(name, suffix="audio", download_location="Downloads", quick=False) -> str:
+    """
+    :param name: Name of the song to download
+    :param suffix: suffix for the search on youtube ("audio" by default)
+    :param download_location: path to downloaded song
+    :param quick: whether to quickly convert the song, or keep the metadata and convert it the right way
+    :return: Downloads the music as mp4, converts it to mp3, and returns absolute path of the downloaded music
+    """
+    file = download_from_name(name, suffix, download_location)
+    song_name, ext = path.splitext(file)
+    str_strip = Download_loc + "/" + download_location
+    song_name = song_name.strip(str_strip)
+    if quick:
+        quick_convert(file)
+    else:
+        long_convert(file)
+    return song_name
