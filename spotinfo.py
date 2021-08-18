@@ -22,7 +22,7 @@ headers = {
 }
 
 
-def get_playlist_items(playlist_id):
+def get_playlist_items(playlist_id: str) -> list:
     r = requests.get(BASE_URL + 'playlists/' + playlist_id + '/tracks',
                      headers=headers,
                      params={'include_groups': 'track', 'limit': 50})
