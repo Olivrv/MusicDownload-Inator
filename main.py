@@ -1,100 +1,64 @@
-from os import path
-from os import rename
-
-from moviepy.editor import *
-from pytube import YouTube
-from youtube_search import YoutubeSearch as yts
-
-SUFFIX = "audio"
-
-
-Download_loc = sys.argv[0].strip("main.py")
-
-
-def get_urls(titles: list, suffix="audio"):
-    """
-    :param titles: List of music titles to download
-    :param suffix: Optional, word added at the end of the query (default: audio)
-    :return: Dictionary linking music titles (input) to their youtube urls
-    """
-    urls = {}
-    for i in titles:
-        search = yts(i + suffix, max_results=1).to_dict()
-        name = search[0]['title']
-        url = "https://www.youtube.com" + search[0]['url_suffix']
-        urls[name] = url
-    return urls
-
-
-def download_from_url(url: str, download_path="Downloads"):
-    """
-    :param quick: Boolean, choose if the download will be  long or quick. Quick will result in a quick convert, and an
-    unreadable file by Itunes and most programs
-    :param url: Youtube urls of musics to download
-    :param download_path: Optional path where to download the music file
-    :return: Downloads the music, and returns absolute path of the downloaded music
-    """
-    vid = YouTube(url)
-    stream = vid.streams.filter().first()
-    outputPath = stream.download(output_path=download_path)
-    return outputPath
-
-
-def download_from_name(name, suffix="audio", download_path="Downloads"):
-    """
-    :param download_path: path to where the file will be downloaded
-    :param suffix: suffix for the search on youtube ("audio" by default)
-    :param name: Name of the music to download
-    :return: Downloads the music, and returns absolute path of the downloaded music
-    """
-    search = yts(name + suffix, max_results=1).to_dict()
-    link = "https://www.youtube.com" + search[0]['url_suffix']
-    return download_from_url(link, download_path)
-
-
-def quick_convert(file):
-    """
-    :param file: Absolute path to the file to convert
-    :return: None, but converts the file to mp3
-    """
-    name, ext = path.splitext(file)
-    rename(file, name + ".wma")
-
-
-def long_convert(file):
-    """
-    :param file: Absolute path to the file to convert
-    :return: None, but converts the file to mp3
-    """
-    mp3_file = os.path.splitext(file)[0] + ".mp3"
-    video_clip = VideoFileClip(file)
-    audio_clip = video_clip.audio
-    audio_clip.write_audiofile(mp3_file, verbose=False, logger=None)
-    audio_clip.close()
-    video_clip.close()
-    os.remove(file)
-
-
-def download(name, suffix="audio", download_location="Downloads", quick=False):
-    """
-    :param name: Name of the song to download
-    :param suffix: suffix for the search on youtube ("audio" by default)
-    :param download_location: path to downloaded song
-    :param quick: whether to quickly convert the song, or keep the metadata and convert it the right way
-    :return: Downloads the music as mp4, converts it to mp3, and returns absolute path of the downloaded music
-    """
-    file = download_from_name(name, suffix, download_location)
-    song_name = os.path.splitext(os.path.basename(file))[0]
-    if quick:
-        quick_convert(file)
-    else:
-        long_convert(file)
-    return song_name
-
+from tools import *
+from spotinfo import get_playlist_items
 
 def main(name=str(sys.argv), suffix="audio", download_location="Downloads",
          quick_mode=False):
     print(download(name, suffix, download_location, quick_mode))
+
+
+def main(suffix="audio", download_location="Downloads", quick_mode=False):
+    print(
+    """
+  __  __           _      _____                      _                 _      _____             _             
+ |  \/  |         (_)    |  __ \                    | |               | |    |_   _|           | |            
+ | \  / |_   _ ___ _  ___| |  | | _____      ___ __ | | ___   __ _  __| |______| |  _ __   __ _| |_ ___  _ __ 
+ | |\/| | | | / __| |/ __| |  | |/ _ \ \ /\ / / '_ \| |/ _ \ / _` |/ _` |______| | | '_ \ / _` | __/ _ \| '__|
+ | |  | | |_| \__ \ | (__| |__| | (_) \ V  V /| | | | | (_) | (_| | (_| |     _| |_| | | | (_| | || (_) | |   
+ |_|  |_|\__,_|___/_|\___|_____/ \___/ \_/\_/ |_| |_|_|\___/ \__,_|\__,_|    |_____|_| |_|\__,_|\__\___/|_|   
+                                                                                                              
+ by Olivrv, using moviepy, pytube, requests.                                                                                                       
+    """)
+    print("Setting up...")
+    settings = input("Would you like to apple the recommended settings? (y/n)\n>>> ")
+    if settings == 'n':
+        suffix = input("New suffix: ")
+        download_location = input('Download path: ')
+        quick_mode = bool(input("Quick mode (bool): "))
+    choice1 = int(input("Would you like to download a single song (1) or multiple songs (2) ? \n>>> "))
+    if choice1 == 1:
+        song = input('Please enter the name of the song. \n>>> ')
+        download(song, suffix, download_location, quick_mode)
+        print("Done.")
+    elif choice1 == 2:
+        choice2 = int(input("Would you like to download the songs from a list (.txt file) (1)"
+                            " or from a playlist (Spotify or Youtube) (2) ? \n>>> "))
+        if choice2 == 1:
+            inputList = input("Please enter the path to the list.\n>>> ")
+
+        elif choice2 == 2:
+            choice3 = int(input("Would you like to download the songs from a Youtube playlist (1) or from a Spotify"
+                                " playlist (2) ? \n>>> "))
+
+            if choice3 == 1:
+                inputYoutubePlaylist = input("Please enter the link of the playlist.\n>>> ")
+
+
+            elif choice3 == 2:
+                inputSpotifyPlaylist = input("Please enter the link of the playlist.\n>>> ")
+                playlist_link = inputSpotifyPlaylist[-22:]
+                songs = get_playlist_items(playlist_link)
+                print("Starting download of: ", *songs)
+                for i in songs:
+                    download(i)
+                    print("Downloaded", i)
+                print("Done.")
+
+            else:
+                print("Error: please input either 1 or 2.")
+        else:
+            print("Error: please input either 1 or 2.")
+    else:
+        print("Error: please input either 1 or 2.")
 
 
 if __name__ == "__main__":

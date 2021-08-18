@@ -1,5 +1,5 @@
 from spotinfo import get_playlist_items
-from tools import *
+from tools import download
 
 
 link = input('Please insert the link of the spotify playlist.')

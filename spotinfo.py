@@ -3,7 +3,6 @@ import requests
 CLIENT_ID = "e0ad36f1d50c48d5947d88e78c359678"
 CLIENT_SECRET = "18ad5486606a4394a7a9b23d2da8450b"
 BASE_URL = 'https://api.spotify.com/v1/'
-PLAYLIST_ID = "1h75JXRsDfWTPkcOpozn26"
 
 AUTH_URL = 'https://accounts.spotify.com/api/token'
 
