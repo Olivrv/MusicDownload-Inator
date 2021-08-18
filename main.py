@@ -63,7 +63,11 @@ def quick_convert(file):
 
 
 def long_convert(file):
-    mp3_file = file.strip(".mp4") + ".mp3"
+    """
+    :param file: Absolute path to the file to convert
+    :return: None, but converts the file to mp3
+    """
+    mp3_file = os.path.splitext(file)[0] + ".mp3"
     video_clip = VideoFileClip(file)
     audio_clip = video_clip.audio
     audio_clip.write_audiofile(mp3_file, verbose=False, logger=None)
@@ -73,10 +77,15 @@ def long_convert(file):
 
 
 def download(name, suffix="audio", download_location="Downloads", quick=False):
+    """
+    :param name: Name of the song to download
+    :param suffix: suffix for the search on youtube ("audio" by default)
+    :param download_location: path to downloaded song
+    :param quick: whether to quickly convert the song, or keep the metadata and convert it the right way
+    :return: Downloads the music as mp4, converts it to mp3, and returns absolute path of the downloaded music
+    """
     file = download_from_name(name, suffix, download_location)
-    song_name, ext = path.splitext(file)
-    str_strip = Download_loc + "/" + download_location
-    song_name = song_name.strip(str_strip)
+    song_name = os.path.splitext(os.path.basename(file))[0]
     if quick:
         quick_convert(file)
     else:
@@ -84,9 +93,8 @@ def download(name, suffix="audio", download_location="Downloads", quick=False):
     return song_name
 
 
-def main(name=str(sys.argv), suffix="audio", download_location=sys.argv[0].strip("main.py") + "/Downloads",
+def main(name=str(sys.argv), suffix="audio", download_location="Downloads",
          quick_mode=False):
-
     print(download(name, suffix, download_location, quick_mode))
 
 
