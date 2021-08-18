@@ -1,5 +1,4 @@
 from os import path
-import sys
 from os import rename
 
 from moviepy.editor import *
