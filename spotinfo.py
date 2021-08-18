@@ -3,7 +3,7 @@ import requests
 CLIENT_ID = "e0ad36f1d50c48d5947d88e78c359678"
 CLIENT_SECRET = "18ad5486606a4394a7a9b23d2da8450b"
 BASE_URL = 'https://api.spotify.com/v1/'
-PLAYLIST_ID = ""
+PLAYLIST_ID = "1h75JXRsDfWTPkcOpozn26"
 
 AUTH_URL = 'https://accounts.spotify.com/api/token'
 
@@ -22,30 +22,13 @@ headers = {
 }
 
 
-def get_playlist_items(playlist_id: str) -> list:
+def get_playlist_items(playlist_id: str, limit=50) -> list:
     r = requests.get(BASE_URL + 'playlists/' + playlist_id + '/tracks',
                      headers=headers,
-                     params={'include_groups': 'track', 'limit': 50})
+                     params={'include_groups': 'track', 'limit': limit})
 
     d = r.json()
     tracks = list()
     for track in d['items']:
         tracks.append(track['track']['name'] + ' by ' + track["track"]["album"]["artists"][0]["name"])
     return tracks
-
-
-def main():
-    r = requests.get(BASE_URL + 'playlists/' + PLAYLIST_ID + '/tracks',
-                     headers=headers,
-                     params={'include_groups': 'track', 'limit': 50})
-
-    d = r.json()
-
-    for track in d['items']:
-        print(track['track']['name'] + ' by ' + track["track"]["album"]["artists"][0]["name"])
-
-
-if __name__ == "__main__":
-    main()
-
-
