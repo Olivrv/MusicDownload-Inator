@@ -34,14 +34,14 @@ def main(suffix="audio", download_location="Downloads", quick_mode=False):
                             " or from a playlist (Spotify or Youtube) (2) ? \n>>> "))
         if choice2 == 1:
             inputList = input("Please enter the path to the list.\n>>> ")
-
+            # TODO
         elif choice2 == 2:
             choice3 = int(input("Would you like to download the songs from a Youtube playlist (1) or from a Spotify"
                                 " playlist (2) ? \n>>> "))
 
             if choice3 == 1:
                 inputYoutubePlaylist = input("Please enter the link of the playlist.\n>>> ")
-
+                # TODO
 
             elif choice3 == 2:
                 inputSpotifyPlaylist = input("Please enter the link of the playlist.\n>>> ")
