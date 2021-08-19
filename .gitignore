@@ -114,3 +114,4 @@ dmypy.json
 .pyre/
 .idea/vcs.xml
 .idea
+/songs.txt
