@@ -28,6 +28,7 @@ def main(suffix="audio", download_location="Downloads", quick_mode=False):
     choice1 = int(input("Would you like to download a single song (1) or multiple songs (2) ? \n>>> "))
     if choice1 == 1:
         song = input('Please enter the name of the song. \n>>> ')
+        print("Starting download...")
         name = download(song, suffix, download_location, quick_mode)
         print("Downloaded", name)
         print("Done.")
@@ -40,6 +41,7 @@ def main(suffix="audio", download_location="Downloads", quick_mode=False):
                 with open(inputList, "r") as f:
                     songs = f.readlines()
                 f.close()
+                print("Starting download...")
                 for i in songs:
                     name = download(i, suffix, download_location, quick_mode)
                     print("Downloaded", name)
@@ -54,6 +56,7 @@ def main(suffix="audio", download_location="Downloads", quick_mode=False):
             if choice3 == 1:
                 inputYoutubePlaylist = input("Please enter the link of the playlist. "
                                              "(Playlist must be public or unlisted)\n>>> ")
+                print("Starting download...")
                 done = download_from_yt_playlist(inputYoutubePlaylist, download_location, quick_mode)
                 if done:
                     print("Done")
@@ -65,7 +68,7 @@ def main(suffix="audio", download_location="Downloads", quick_mode=False):
                     inputSpotifyPlaylist = input("Please enter the link of the playlist.\n>>> ")
                     playlist_link = inputSpotifyPlaylist[-22:]
                     songs = get_playlist_items(playlist_link)
-                    print("Starting download of: ", *songs)
+                    print("Starting download...")
                     for i in songs:
                         download(i)
                         print("Downloaded", i)
