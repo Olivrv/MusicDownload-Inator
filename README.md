@@ -19,7 +19,7 @@ There are a few settings you can tweak to your liking:
 * `quick_mode`: A quicker mode to download, but metadata will be lost and the file might be unreadable by some programs, such as Itunes (Default = False)
 
 ## Setting up Spotify:
-1. Set up your developer account here: 
+1. Set up your developer account here: [Spotify Developer Dashboard](https://developer.spotify.com/dashboard/)
 2. Get your credentials here:
 3. Create a config.py file in the project directory as such:
 ```#config.py
