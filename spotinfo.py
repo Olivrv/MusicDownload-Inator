@@ -1,4 +1,7 @@
 import requests
+
+CLIENT_ID = None
+CLIENT_SECRET = None
 from config import CLIENT_ID, CLIENT_SECRET
 
 BASE_URL = 'https://api.spotify.com/v1/'
