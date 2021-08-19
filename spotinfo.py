@@ -2,7 +2,10 @@ import requests
 
 CLIENT_ID = None
 CLIENT_SECRET = None
-from config import CLIENT_ID, CLIENT_SECRET
+try:
+    from config import CLIENT_ID, CLIENT_SECRET
+except:
+    print("Error: Set up your Spotify developer account.")
 
 BASE_URL = 'https://api.spotify.com/v1/'
 
