@@ -20,8 +20,9 @@ There are a few settings you can tweak to your liking:
 
 ## Setting up Spotify:
 1. Set up your developer account here: [Spotify Developer Dashboard](https://developer.spotify.com/dashboard/)
-2. Get your credentials here:
-3. Create a config.py file in the project directory as such:
+2. Create an app by clicking on the `Create an app` button
+3. Open your app, and copy paste your ClientID and your Client SECRET (top left)
+4. Create a config.py file in the project directory as such:
 ```#config.py
 CLIENT_ID = "XXXXXXXXXXXXXXXXXXXXXXX"
 CLIENT_SECRET = "XXXXXXXXXXXXXXXXXXXXX"
