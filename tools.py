@@ -1,7 +1,7 @@
-from os import path
-from os import rename
+import os
+import sys
 
-from moviepy.editor import *
+from moviepy.video.io.VideoFileClip import VideoFileClip
 from pytube import YouTube, Playlist
 from youtube_search import YoutubeSearch as yts
 
@@ -80,8 +80,8 @@ def quick_convert(file):
     :param file: Absolute path to the file to convert
     :return: None, but converts the file to mp3
     """
-    name, ext = path.splitext(file)
-    rename(file, name + ".mp3")
+    name, ext = os.path.splitext(file)
+    os.rename(file, name + ".mp3")
 
 
 def long_convert(file):

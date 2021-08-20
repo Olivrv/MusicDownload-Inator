@@ -33,6 +33,7 @@ def main(suffix="audio", download_location="Downloads", quick_mode=False):
         name = download(song, suffix, download_location, quick_mode)
         print("Downloaded", name)
         print("Done.")
+        input("Press enter to quit.")
     elif choice1 == 2:
         choice2 = int(input("Would you like to download the songs from a list (.txt file) (1)"
                             " or from a playlist (Spotify or Youtube) (2) ? \n>>> "))
@@ -47,6 +48,7 @@ def main(suffix="audio", download_location="Downloads", quick_mode=False):
                     name = download(i, suffix, download_location, quick_mode)
                     print("Downloaded", name)
                 print("Done.")
+                input("Press enter to quit.")
             except FileNotFoundError:
                 print("Error: Incorrect filename.")
 
@@ -61,6 +63,7 @@ def main(suffix="audio", download_location="Downloads", quick_mode=False):
                 done = download_from_yt_playlist(inputYoutubePlaylist, download_location, quick_mode)
                 if done:
                     print("Done")
+                    input("Press enter to quit.")
                 else:
                     print("Error: Incorrect playlist link.")
 
@@ -74,6 +77,7 @@ def main(suffix="audio", download_location="Downloads", quick_mode=False):
                         download(i)
                         print("Downloaded", i)
                     print("Done.")
+                    input("Press enter to quit.")
                 except KeyError:
                     print("Error: incorrect playlist. (Expected: https://open.spotify.com/playlist/XXXXXXXXXXXX)")
 
