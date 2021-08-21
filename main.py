@@ -2,12 +2,7 @@ from tools import *
 from spotinfo import get_playlist_items
 
 
-def main(name=str(sys.argv), suffix="audio", download_location="Downloads",
-         quick_mode=False):
-    print(download(name, suffix, download_location, quick_mode))
-
-
-def main(suffix="audio", download_location="Downloads", quick_mode=False):
+def main(suffix="audio", download_location="Downloads", quick_mode=False, limit=50):
     print(
         """
   __  __           _      _____                      _                 _      _____             _             
@@ -23,9 +18,10 @@ def main(suffix="audio", download_location="Downloads", quick_mode=False):
     print("Setting up...")
     settings = input("Would you like to apply the recommended settings? (y/n)\n>>> ")
     if settings == 'n':
-        suffix = input("New suffix: ")
-        download_location = input('Download path: ')
-        quick_mode = bool(input("Quick mode (bool): "))
+        suffix = input("New suffix (default:audio): ")
+        download_location = input('Download path (default:Downloads): ')
+        quick_mode = bool(input("Quick mode (boolean expected) (default:False): "))
+        limit = int(input("Max number of songs in playlist (Spotify) (default:50): "))
     choice1 = int(input("Would you like to download a single song (1) or multiple songs (2) ? \n>>> "))
     if choice1 == 1:
         song = input('Please enter the name of the song. \n>>> ')
@@ -68,7 +64,7 @@ def main(suffix="audio", download_location="Downloads", quick_mode=False):
                 try:
                     inputSpotifyPlaylist = input("Please enter the link of the playlist.\n>>> ")
                     playlist_link = inputSpotifyPlaylist[-22:]
-                    songs = get_playlist_items(playlist_link)
+                    songs = get_playlist_items(playlist_link, limit)
                     print("Starting download...")
                     for i in songs:
                         download(i)
