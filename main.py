@@ -2,7 +2,7 @@ from tools import *
 from spotinfo import get_playlist_items
 
 
-def main(suffix="audio", download_location="Downloads", quick_mode=False, limit=100):
+def main(suffix="audio", download_location="Downloads", quick_mode=False):
     print(
         """
   __  __           _      _____                      _                 _      _____             _             
@@ -63,9 +63,9 @@ def main(suffix="audio", download_location="Downloads", quick_mode=False, limit=
                 try:
                     inputSpotifyPlaylist = input("Please enter the link of the playlist.\n>>> ")
                     playlist_link = inputSpotifyPlaylist[-22:]
-                    nlimit = input("How many songs would you like to download? \n>>> ")
+                    new_limit = input("How many songs would you like to download? \n>>> ")
                     try:
-                        limit = int(nlimit)
+                        limit = int(new_limit)
                     except ValueError:
                         limit = 50
                     songs = get_playlist_items(playlist_link, limit)
