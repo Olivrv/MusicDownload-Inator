@@ -39,22 +39,28 @@ def get_hundred_songs(playlist_id: str, limit=100, offset=0) -> list:
 
 
 def get_playlist_items(playlist_id: str, limit=50) -> list:
-    if limit <= 100:
-        r = requests.get(BASE_URL + 'playlists/' + playlist_id + '/tracks',
-                         headers=headers,
-                         params={'include_groups': 'track', 'limit': limit})
+    r = requests.get(BASE_URL + 'playlists/' + playlist_id + '/tracks',
+                     headers=headers,
+                     params={'include_groups': 'track', 'limit': min(limit, 100)})
 
-        d = r.json()
-        tracks = list()
-        for track in d['items']:
-            tracks.append(track['track']['name'] + ' by ' + track["track"]["album"]["artists"][0]["name"])
-        return tracks
-    else:
-        offset = 0
-        tracks = list()
-        for i in range(int(limit/100)):
-            tracks += (get_hundred_songs(playlist_id, offset=offset))
-            offset += 100
-        tracks += (get_hundred_songs(playlist_id, limit=(limit % 100), offset=offset))
-        return tracks
+    d = r.json()
+    tracks = list()
+    for track in d['items']:
+        tracks.append(track['track']['name'] + ' by ' + track["track"]["album"]["artists"][0]["name"])
+    # return tracks
+    offset = 0
+    tracks = list()
+    for i in range(int(limit/100)):
+        tracks += (get_hundred_songs(playlist_id, offset=offset))
+        offset += 100
+    tracks += (get_hundred_songs(playlist_id, limit=(limit % 100), offset=offset))
+    return tracks
+
+
+a = get_playlist_items("0GMj0KPoiSYW1mUqKwo02i", 63)
+print(len(a))
+print(a)
+a = get_playlist_items("1h75JXRsDfWTPkcOpozn26", 122)
+print(len(a))
+print(a)
 
