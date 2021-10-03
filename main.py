@@ -2,7 +2,7 @@ from tools import *
 from spotinfo import get_playlist_items
 
 
-def main(suffix="audio", download_location="Downloads", quick_mode=False, limit=50):
+def main(suffix="audio", download_location="Downloads", quick_mode=False, limit=100):
     print(
         """
   __  __           _      _____                      _                 _      _____             _             
@@ -21,7 +21,6 @@ def main(suffix="audio", download_location="Downloads", quick_mode=False, limit=
         suffix = input("New suffix (default:audio): ")
         download_location = input('Download path (default:Downloads): ')
         quick_mode = bool(input("Quick mode (boolean expected) (default:False): "))
-        limit = int(input("Max number of songs in playlist (Spotify) (default:50): "))
     choice1 = int(input("Would you like to download a single song (1) or multiple songs (2) ? \n>>> "))
     if choice1 == 1:
         song = input('Please enter the name of the song. \n>>> ')
@@ -64,10 +63,15 @@ def main(suffix="audio", download_location="Downloads", quick_mode=False, limit=
                 try:
                     inputSpotifyPlaylist = input("Please enter the link of the playlist.\n>>> ")
                     playlist_link = inputSpotifyPlaylist[-22:]
+                    nlimit = input("How many songs would you like to download? \n>>> ")
+                    try:
+                        limit = int(nlimit)
+                    except ValueError:
+                        limit = 50
                     songs = get_playlist_items(playlist_link, limit)
                     print("Starting download...")
                     for i in songs:
-                        download(i)
+                        download(i, suffix, download_location, quick_mode)
                         print("Downloaded", i)
                     print("Done.")
                 except KeyError:
