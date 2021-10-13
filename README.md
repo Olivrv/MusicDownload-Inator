@@ -18,10 +18,10 @@ There are a few settings you can tweak to your liking:
 * `download_location`: The path where all the songs will be downloaded (all modes). (Default = "Downloads")
 * `quick_mode`: A quicker mode to download, but metadata will be lost and the file might be unreadable by some programs, such as Itunes (Default = False)
 
-Disclaimer: All files are downloaded from Youtube. The Spotify Playlist mode will fetch the songs from Spotify to download them from Youtube. Nothing is downloaded from Spotify.
+### Disclaimer: All files are downloaded from Youtube. The Spotify Playlist mode will fetch the songs from Spotify to download them from Youtube. Nothing is downloaded from Spotify.
 
-Since v0.02, you don't have to set up Spotify, unless you want to contribute to the program.
 ## Setting up Spotify:
+`Since v0.02, you don't have to set up Spotify, unless you want to contribute to the program.`
 1. Set up your developer account here: [Spotify Developer Dashboard](https://developer.spotify.com/dashboard/)
 2. Create an app by clicking on the `Create an app` button
 3. Open your app, and copy paste your ClientID and your Client SECRET (top left)
