@@ -116,3 +116,7 @@ dmypy.json
 .idea
 /songs.txt
 /config.py
+config.py
+/build.cmd
+/Work in progress/main2.py
+/Work in progress/settings.pickle
