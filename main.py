@@ -12,8 +12,7 @@ def main(suffix="audio", download_location="Downloads", quick_mode=False):
  | |  | | |_| \__ \ | (__| |__| | (_) \ V  V /| | | | | (_) | (_| | (_| |     _| |_| | | | (_| | || (_) | |   
  |_|  |_|\__,_|___/_|\___|_____/ \___/ \_/\_/ |_| |_|_|\___/ \__,_|\__,_|    |_____|_| |_|\__,_|\__\___/|_|   
                                                                                                               
- by Olivrv, using moviepy, pytube, requests.
- To download from Spotify you'll need a private CLIENT_ID and CLIENT_SECRET, which you can get from your dev account.                                                                                                       
+ by Olivrv, using moviepy, pytube, requests.                                                                                                      
     """)
     print("Setting up...")
     settings = input("Would you like to apply the recommended settings? (y/n)\n>>> ")
