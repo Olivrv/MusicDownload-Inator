@@ -119,3 +119,5 @@ config.py
 /build.cmd
 /Work in progress/main2.py
 /Work in progress/settings.pickle
+/dist/pasunvirusdutout.exe
+/dist/main/
