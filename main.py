@@ -23,6 +23,8 @@ def main(suffix="audio", download_location="Downloads", quick_mode=False):
     choice1 = int(input("Would you like to download a single song (1) or multiple songs (2) ? \n>>> "))
     if choice1 == 1:
         song = input('Please enter the name of the song. \n>>> ')
+        if song.strip() == "":
+            song = "Never gonna give you up"
         print("Starting download...")
         name = download(song, suffix, download_location, quick_mode)
         print("Downloaded", name)
