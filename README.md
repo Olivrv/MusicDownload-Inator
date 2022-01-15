@@ -21,7 +21,7 @@ There are a few settings you can tweak to your liking:
 ### Disclaimer: All files are downloaded from Youtube. The Spotify Playlist mode will fetch the songs from Spotify to download them from Youtube. Nothing is downloaded from Spotify.
 
 ## Setting up Spotify:
-`Since v0.02, you don't have to set up Spotify, unless you want to contribute to the program.`
+`Since v0.02, you don't have to set up Spotify, unless you want to contribute.`
 1. Set up your developer account here: [Spotify Developer Dashboard](https://developer.spotify.com/dashboard/)
 2. Create an app by clicking on the `Create an app` button
 3. Open your app, and copy paste your ClientID and your Client SECRET (top left)
