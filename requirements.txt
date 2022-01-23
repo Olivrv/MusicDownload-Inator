@@ -1,4 +1,4 @@
-moviepy~=1.0.3
+moviepy
 pytube
-requests~=2.25.1
+requests
 youtube_search
