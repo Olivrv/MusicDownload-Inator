@@ -1,4 +1,5 @@
-moviepy
 pytube
 requests
 youtube_search
+imageio-ffmpeg
+moviepy == 1.0.3
