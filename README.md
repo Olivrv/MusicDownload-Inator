@@ -1,4 +1,4 @@
-# MusicDownload-Inator
+# MusicDownload-Inator (Deprecated due to pytube's series of bugs)
 
 <!-- DOWNLOAD MUSIC -->
 ## Download music in various ways:
