@@ -84,12 +84,13 @@ def quick_convert(file):
     os.rename(file, name + ".mp3")
 
 
-def long_convert(file):
+def long_convert(file, name):
     """
+    :param name: Name the song is saved under
     :param file: Absolute path to the file to convert
     :return: None, but converts the file to mp3
     """
-    mp3_file = os.path.splitext(file)[0] + ".mp3"
+    mp3_file = os.path.dirname(file) + name + ".mp3"
     video_clip = VideoFileClip(file)
     audio_clip = video_clip.audio
     audio_clip.write_audiofile(mp3_file, verbose=False, logger=None)
@@ -111,5 +112,5 @@ def download(name, suffix="audio", download_location="Downloads", quick=False) -
     if quick:
         quick_convert(file)
     else:
-        long_convert(file)
+        long_convert(file, name)
     return song_name

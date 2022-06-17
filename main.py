@@ -1,5 +1,5 @@
 from tools import *
-from spotinfo import get_playlist_items
+from spotinfo import get_playlist_items, get_album_items
 
 
 def main(suffix="audio", download_location="Downloads", quick_mode=False):
@@ -19,7 +19,6 @@ def main(suffix="audio", download_location="Downloads", quick_mode=False):
     if settings == 'n':
         suffix = input("New suffix (default:audio): ")
         download_location = input('Download path (default:Downloads): ')
-        quick_mode = bool(input("Quick mode (boolean expected) (default:False): "))
     choice1 = int(input("Would you like to download a single song (1) or multiple songs (2) ? \n>>> "))
     if choice1 == 1:
         song = input('Please enter the name of the song. \n>>> ')
@@ -31,7 +30,7 @@ def main(suffix="audio", download_location="Downloads", quick_mode=False):
         print("Done.")
     elif choice1 == 2:
         choice2 = int(input("Would you like to download the songs from a list (.txt file) (1)"
-                            " or from a playlist (Spotify or Youtube) (2) ? \n>>> "))
+                            " or from a playlist or Album (Spotify or Youtube) (2) ? \n>>> "))
         if choice2 == 1:
             inputList = input("Please enter the path to the list (1 song name per line, no commas).\n>>> ")
             try:
@@ -48,7 +47,7 @@ def main(suffix="audio", download_location="Downloads", quick_mode=False):
 
         elif choice2 == 2:
             choice3 = int(input("Would you like to download the songs from a Youtube playlist (1) or from a Spotify"
-                                " playlist (2) ? \n>>> "))
+                                " playlist (2) or from a Spotify album (3)? \n>>> "))
 
             if choice3 == 1:
                 inputYoutubePlaylist = input("Please enter the link of the playlist. "
@@ -77,9 +76,20 @@ def main(suffix="audio", download_location="Downloads", quick_mode=False):
                     print("Done.")
                 except KeyError:
                     print("Error: incorrect playlist. (Expected: https://open.spotify.com/playlist/XXXXXXXXXXXX)")
-
+            elif choice3 == 3:
+                try:
+                    inputSpotifyAlbum = input("Please enter the link of the album.\n>>> ")
+                    album_link = inputSpotifyAlbum[-22:]
+                    songs = get_album_items(album_link)
+                    print("Starting download...")
+                    for i in songs:
+                        download(i, suffix, download_location, quick_mode)
+                        print("Downloaded", i)
+                    print("Done.")
+                except KeyError:
+                    print("Error: incorrect album. (Expected: https://open.spotify.com/playlist/XXXXXXXXXXXX)")
             else:
-                print("Error: please input either 1 or 2.")
+                print("Error: please input either 1 or 2 or 3.")
         else:
             print("Error: please input either 1 or 2.")
     else:
