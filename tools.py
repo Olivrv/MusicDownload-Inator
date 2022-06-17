@@ -90,7 +90,7 @@ def long_convert(file, name):
     :param file: Absolute path to the file to convert
     :return: None, but converts the file to mp3
     """
-    mp3_file = os.path.dirname(file) + name + ".mp3"
+    mp3_file = os.path.dirname(file) + '\\' + name + ".mp3"
     video_clip = VideoFileClip(file)
     audio_clip = video_clip.audio
     audio_clip.write_audiofile(mp3_file, verbose=False, logger=None)

@@ -80,7 +80,12 @@ def main(suffix="audio", download_location="Downloads", quick_mode=False):
                 try:
                     inputSpotifyAlbum = input("Please enter the link of the album.\n>>> ")
                     album_link = inputSpotifyAlbum[-22:]
-                    songs = get_album_items(album_link)
+                    new_limit = input("How many songs would you like to download? \n>>> ")
+                    try:
+                        limit = int(new_limit)
+                    except ValueError:
+                        limit = 50
+                    songs = get_album_items(album_link, limit)
                     print("Starting download...")
                     for i in songs:
                         download(i, suffix, download_location, quick_mode)
