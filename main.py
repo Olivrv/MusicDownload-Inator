@@ -71,8 +71,11 @@ def main(suffix="audio", download_location="Downloads", quick_mode=False):
                     songs = get_playlist_items(playlist_link, limit)
                     print("Starting download...")
                     for i in songs:
-                        download(i, suffix, download_location, quick_mode)
-                        print("Downloaded", i)
+                        try:
+                            download(i, suffix, download_location, quick_mode)
+                            print("Downloaded", i)
+                        except IndexError:
+                            pass
                     print("Done.")
                 except KeyError:
                     print("Error: incorrect playlist. (Expected: https://open.spotify.com/playlist/XXXXXXXXXXXX)")

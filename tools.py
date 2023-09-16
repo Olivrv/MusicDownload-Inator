@@ -93,7 +93,10 @@ def long_convert(file, name):
     mp3_file = os.path.dirname(file) + '\\' + name + ".mp3"
     video_clip = VideoFileClip(file)
     audio_clip = video_clip.audio
-    audio_clip.write_audiofile(mp3_file, verbose=False, logger=None)
+    try:
+        audio_clip.write_audiofile(mp3_file, verbose=False, logger=None)
+    except OSError:
+        pass
     audio_clip.close()
     video_clip.close()
     os.remove(file)

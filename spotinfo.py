@@ -80,4 +80,3 @@ def get_album_items(album_id: str, limit=50) -> list:
         offset += 50
     tracks += (get_fifty_songs_album(album_id, limit=(limit % 100), offset=offset))
     return tracks
-
