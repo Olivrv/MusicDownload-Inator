@@ -10,7 +10,7 @@ __pycache__/
 .Python
 build/
 develop-eggs/
-downloads/
+Songs/Downloads/
 eggs/
 .eggs/
 lib/
@@ -123,12 +123,13 @@ config.py
 /dist/pasunvirusdutout.exe
 /dist/main/
 /list.txt
-/Coding mode/
-/Dire Straits Best of/
-/La chambre 4/
-/oH bOy/
-/Night Visions/
-/Mercury - Act 1 & 2/
-/iiiiiiiiiiiiiiii/
-/Saxophone House 2022/
-/Saint Motel/
+/Songs/Coding mode/
+/Songs/Dire Straits Best of/
+/Songs/La chambre 4/
+/Songs/oH bOy/
+/Songs/Night Visions/
+/Songs/Mercury - Act 1 & 2/
+/Songs/iiiiiiiiiiiiiiii/
+/Songs/Saxophone House 2022/
+/Songs/Saint Motel/
+/Songs/
