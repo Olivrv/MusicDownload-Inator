@@ -2,7 +2,7 @@ from tools import *
 from spotinfo import get_playlist_items, get_album_items
 
 
-def main(suffix="audio", download_location="Downloads", quick_mode=False):
+def main(suffix="audio", download_location="Downloads//", quick_mode=False):
     print(
         """
   __  __           _      _____                      _                 _      _____             _             
@@ -25,7 +25,7 @@ def main(suffix="audio", download_location="Downloads", quick_mode=False):
         if song.strip() == "":
             song = "Never gonna give you up"
         print("Starting download...")
-        name = download(song, suffix, download_location, quick_mode)
+        name = download(song, suffix, download_location)
         print("Downloaded", name)
         print("Done.")
     elif choice1 == 2:
