@@ -39,7 +39,7 @@ def main(suffix="audio", download_location="Downloads//", quick_mode=False):
                 f.close()
                 print("Starting download...")
                 for i in songs:
-                    name = download(i, suffix, download_location, quick_mode)
+                    name = download(i, suffix, download_location)
                     print("Downloaded", name)
                 print("Done.")
             except FileNotFoundError:
@@ -53,7 +53,7 @@ def main(suffix="audio", download_location="Downloads//", quick_mode=False):
                 inputYoutubePlaylist = input("Please enter the link of the playlist. "
                                              "(Playlist must be public or unlisted)\n>>> ")
                 print("Starting download...")
-                done = download_from_yt_playlist(inputYoutubePlaylist, download_location, quick_mode)
+                done = download_from_yt_playlist(inputYoutubePlaylist, download_location)
                 if done:
                     print("Done")
                 else:

@@ -65,10 +65,11 @@ def download_from_yt_playlist(playlist, download_path="Downloads/", quick_mode=F
         p = Playlist(playlist)
         for song_url in p.video_urls:
             file = download_from_url(song_url, download_path, quick_mode)
+            name = os.path.splitext(os.path.basename(file))[0]
             if quick_mode:
                 quick_convert(file)
             else:
-                long_convert(file)
+                long_convert(file, name)
             print("Downloaded", os.path.splitext(os.path.basename(file))[0])
     except KeyError:
         return False
