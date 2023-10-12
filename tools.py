@@ -1,6 +1,6 @@
 import os
 import sys
-
+os.environ["IMAGEIO_FFMPEG_EXE"] = "ffmpeg"
 from moviepy.video.io.VideoFileClip import VideoFileClip
 from pytube import YouTube, Playlist
 from youtube_search import YoutubeSearch as yts
@@ -54,7 +54,7 @@ def download_from_name(name, suffix="audio", download_path="Downloads", quick_mo
     return download_from_url(link, download_path, quick_mode)
 
 
-def download_from_yt_playlist(playlist, download_path="Downloads", quick_mode=False):
+def download_from_yt_playlist(playlist, download_path="Downloads/", quick_mode=False):
     """
     :param playlist: Youtube playlist link
     :param download_path: Path where to download the songs
@@ -65,10 +65,11 @@ def download_from_yt_playlist(playlist, download_path="Downloads", quick_mode=Fa
         p = Playlist(playlist)
         for song_url in p.video_urls:
             file = download_from_url(song_url, download_path, quick_mode)
+            name = os.path.splitext(os.path.basename(file))[0]
             if quick_mode:
                 quick_convert(file)
             else:
-                long_convert(file)
+                long_convert(file, name)
             print("Downloaded", os.path.splitext(os.path.basename(file))[0])
     except KeyError:
         return False
@@ -90,7 +91,7 @@ def long_convert(file, name):
     :param file: Absolute path to the file to convert
     :return: None, but converts the file to mp3
     """
-    mp3_file = os.path.dirname(file) + '\\' + name + ".mp3"
+    mp3_file = os.path.dirname(file) + '/' + name + ".mp3"
     video_clip = VideoFileClip(file)
     audio_clip = video_clip.audio
     try:
@@ -102,7 +103,7 @@ def long_convert(file, name):
     os.remove(file)
 
 
-def download(name, suffix="audio", download_location="Downloads", quick=False) -> str:
+def download(name, suffix="audio", download_location="Downloads/", quick=False) -> str:
     """
     :param name: Name of the song to download
     :param suffix: suffix for the search on youtube ("audio" by default)
