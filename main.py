@@ -1,4 +1,4 @@
-from tools import *
+from tools.tools import *
 from tools.spotinfo import get_playlist_items, get_album_items
 
 
