@@ -1,5 +1,5 @@
 from tools import *
-from spotinfo import get_playlist_items, get_album_items
+from tools.spotinfo import get_playlist_items, get_album_items
 
 
 def main(suffix="audio", download_location="Downloads//", quick_mode=False):

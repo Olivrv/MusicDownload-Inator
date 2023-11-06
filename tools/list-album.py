@@ -1,4 +1,4 @@
-from spotinfo import get_fifty_songs_album
+from tools.spotinfo import get_fifty_songs_album
 from tools import download
 
 link = input('Please insert the link of the spotify album. ')
