@@ -1,4 +1,5 @@
 # MusicDownload-Inator (Unstable due to pytube's unstability)
+![ImagePreview](https://github.com/Olivrv/MusicDownload-Inator/assets/musicDownloadInator.jpeg)
 
 <!-- DOWNLOAD MUSIC -->
 ## Download music in various ways:
